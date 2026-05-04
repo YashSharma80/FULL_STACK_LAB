@@ -1,0 +1,45 @@
+<%- include('partials/header') %>
+<%- include('partials/flash') %>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Register</h2>
+        <form class="needs-validation" novalidate method="POST" action="/register">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" name="username" class="form-control <%= errors?.username ? 'is-invalid' : '' %>" value="<%= formData.username || '' %>" required>
+            <div class="invalid-feedback"><%= errors?.username || 'Please enter a username.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control <%= errors?.password ? 'is-invalid' : '' %>" required>
+            <div class="invalid-feedback"><%= errors?.password || 'Please enter a password.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Full name</label>
+            <input type="text" name="fullName" class="form-control <%= errors?.fullName ? 'is-invalid' : '' %>" value="<%= formData.fullName || '' %>" required>
+            <div class="invalid-feedback"><%= errors?.fullName || 'Please enter your full name.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Country</label>
+            <input type="text" name="country" class="form-control <%= errors?.country ? 'is-invalid' : '' %>" value="<%= formData.country || '' %>" required>
+            <div class="invalid-feedback"><%= errors?.country || 'Please enter your country.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Dietary preference</label>
+            <select name="dietaryPreference" class="form-select <%= errors?.dietaryPreference ? 'is-invalid' : '' %>" required>
+              <option value="">Select one</option>
+              <option value="Vegetarian" <%= formData.dietaryPreference === 'Vegetarian' ? 'selected' : '' %>>Vegetarian</option>
+              <option value="Vegan" <%= formData.dietaryPreference === 'Vegan' ? 'selected' : '' %>>Vegan</option>
+              <option value="Pescatarian" <%= formData.dietaryPreference === 'Pescatarian' ? 'selected' : '' %>>Pescatarian</option>
+              <option value="Omnivore" <%= formData.dietaryPreference === 'Omnivore' ? 'selected' : '' %>>Omnivore</option>
+            </select>
+            <div class="invalid-feedback"><%= errors?.dietaryPreference || 'Choose a dietary preference.' %></div>
+          </div>
+          <button class="btn btn-primary w-100" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

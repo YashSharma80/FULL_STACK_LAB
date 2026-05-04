@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<%- include('../partials/flash') %>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Create Recipe</h2>
+        <form class="needs-validation" novalidate method="POST" action="/recipe">
+          <div class="mb-3">
+            <label class="form-label">Dish name</label>
+            <input type="text" name="dishName" class="form-control <%= errors?.dishName ? 'is-invalid' : '' %>" value="<%= formData.dishName || '' %>" required>
+            <div class="invalid-feedback"><%= errors?.dishName || 'Dish name is required.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ingredients (comma-separated)</label>
+            <textarea name="ingredients" class="form-control <%= errors?.ingredients ? 'is-invalid' : '' %>" required><%= formData.ingredients || '' %></textarea>
+            <div class="invalid-feedback"><%= errors?.ingredients || 'Please add the ingredients.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Cooking time (minutes)</label>
+            <input type="number" min="1" name="cookingTime" class="form-control <%= errors?.cookingTime ? 'is-invalid' : '' %>" value="<%= formData.cookingTime || '' %>" required>
+            <div class="invalid-feedback"><%= errors?.cookingTime || 'Enter a valid cooking time.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Difficulty</label>
+            <select name="difficulty" class="form-select <%= errors?.difficulty ? 'is-invalid' : '' %>" required>
+              <option value="">Select difficulty</option>
+              <option value="Easy" <%= formData.difficulty === 'Easy' ? 'selected' : '' %>>Easy</option>
+              <option value="Medium" <%= formData.difficulty === 'Medium' ? 'selected' : '' %>>Medium</option>
+              <option value="Hard" <%= formData.difficulty === 'Hard' ? 'selected' : '' %>>Hard</option>
+            </select>
+            <div class="invalid-feedback"><%= errors?.difficulty || 'Please select a difficulty.' %></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Instructions</label>
+            <textarea name="instructions" rows="5" class="form-control <%= errors?.instructions ? 'is-invalid' : '' %>" required><%= formData.instructions || '' %></textarea>
+            <div class="invalid-feedback"><%= errors?.instructions || 'Please provide instructions.' %></div>
+          </div>
+          <button class="btn btn-success" type="submit">Save Recipe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
